@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link
+      href="https://atlas.microsoft.com/sdk/javascript/mapcontrol/3/atlas.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://atlas.microsoft.com/sdk/javascript/mapcontrol/3/atlas.min.js"></script>
+    <script src="https://atlas.microsoft.com/sdk/javascript/service/2/atlas-service.min.js"></script>
+    <style>
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
+        font-family: segoeui;
+      }
+      #MapWithPin {
+        position: relative;
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+    <script>
+      var map,
+        datasource,
+        client,
+        popup,
+        searchInput,
+        resultsPanel,
+        searchInputLength,
+        centerMapOnResults;
+
+      var minSearchInputLength = 3;
+
+      var keyStrokeDelay = 150;
+
+      function GetMap() {
+        map = new atlas.Map("MapWithPin", {
+          center: [-0.7313343, 52.4140353],
+          zoom: 15,
+          view: "Auto",
+          authOptions: {
+            authType: "subscriptionKey",
+            subscriptionKey: "key",
+          },
+        });
+        map.events.add("load", function () {
+          const pin = new atlas.HtmlMarker({
+            position: [-0.7313343, 52.4140353],
+            color: "DodgerBlue",
+          });
+
+          map.markers.add(pin);
+        });
+      }
+    </script>
+  </head>
+
+  <body onload="GetMap()">
+    <div id="MapWithPin"></div>
+  </body>
+</html>
